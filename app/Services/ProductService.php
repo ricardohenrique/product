@@ -59,13 +59,13 @@ class ProductService extends AbstractService
     /**
      * Update a resources
      * @access public
-     * @param integer $categoryId | some category id
+     * @param integer $productId | some category id
      * @param array $data | array with new data
      * @return ResourceModel
      */
-    public function update(int $categoryId, array $data): ResourceModel
+    public function update(int $productId, array $data): ResourceModel
     {
-        return parent::updateResource($categoryId, $data);
+        return parent::updateResource($productId, $data);
     }
 
     /**
