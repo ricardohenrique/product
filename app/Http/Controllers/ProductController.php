@@ -22,6 +22,18 @@ class ProductController extends AbstractController
     	return view('product/index', $data);
     }
 
+    public function show($id){
+    	try {
+    		$data['product'] = $this->service->getById($id);
+    	} catch (ModelNotFoundException $e) {
+    		return redirect('/')->with('error', "Id #$id não encontrado :(");
+    	}
+
+    	$data['product']->load('category');
+    	$data['categories'] = $this->serviceCategory->getAll();
+    	return view('product/show', $data);
+    }
+
     public function create(){
     	$data['categories'] = $this->serviceCategory->getAll();
     	return view('product/create', $data);
@@ -37,6 +49,9 @@ class ProductController extends AbstractController
     	return redirect('/')->with('success', 'Produto cadastrado com sucesso :)');
     }
 
+    /**
+     * 
+     */
     public function edit($id){
     	try {
     		$data['product'] = $this->service->getById($id);
@@ -57,5 +72,16 @@ class ProductController extends AbstractController
 
     	$this->service->update($id, $request->all());
     	return redirect('/')->with('success', 'Produto atualizado com sucesso :)');
+    }
+
+    public function delete($id){
+    	try {
+    		$this->service->getById($id);
+    	} catch (ModelNotFoundException $e) {
+    		return redirect('/')->with('error', "Id #$id não encontrado :(");
+    	}
+
+    	$this->service->delete($id);
+    	return redirect('/')->with('success', 'Produto excluido com sucesso :)');
     }
 }
