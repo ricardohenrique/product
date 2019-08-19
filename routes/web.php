@@ -12,3 +12,7 @@
 */
 
 Route::get('/', 'ProductController@index');
+Route::get('/create', 'ProductController@create');
+Route::post('/store', 'ProductController@store');
+Route::get('/edit/{id}', 'ProductController@edit');
+Route::put('/update/{id}', 'ProductController@update');
