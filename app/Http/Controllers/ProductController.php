@@ -11,18 +11,38 @@ class ProductController extends AbstractController
 {
 	private $serviceCategory;
 
+    /**
+     * Constructor class
+     * @access public
+     * @param ProductService $service
+     * @param CategoryService $serviceCategory
+     * @return void
+     */
 	public function __construct(ProductService $service, CategoryService $serviceCategory)
     {
         $this->service = $service;
         $this->serviceCategory = $serviceCategory;
     }
 
-    public function index(){
+    /**
+     * Index product
+     * @access public
+     * @return
+     */
+    public function index()
+    {
     	$data['products'] = $this->service->getAll();
-    	return view('product/index', $data);
+        return view('product/index', $data);
     }
 
-    public function show($id){
+    /**
+     * Create product
+     * @access public
+     * @param int $id
+     * @return
+     */
+    public function show(int $id)
+    {
     	try {
     		$data['product'] = $this->service->getById($id);
     	} catch (ModelNotFoundException $e) {
@@ -34,12 +54,25 @@ class ProductController extends AbstractController
     	return view('product/show', $data);
     }
 
-    public function create(){
+    /**
+     * Create product
+     * @access public
+     * @return
+     */
+    public function create()
+    {
     	$data['categories'] = $this->serviceCategory->getAll();
     	return view('product/create', $data);
     }
 
-    public function store(Request $request){
+    /**
+     * Store product
+     * @access public
+     * @param Request $request
+     * @return
+     */
+    public function store(Request $request)
+    {
     	try {
     		$this->service->store($request->all());
     	} catch (Exception $e) {
@@ -50,9 +83,13 @@ class ProductController extends AbstractController
     }
 
     /**
-     * 
+     * Edit product
+     * @access public
+     * @param int $id
+     * @return
      */
-    public function edit($id){
+    public function edit(int $id)
+    {
     	try {
     		$data['product'] = $this->service->getById($id);
     	} catch (ModelNotFoundException $e) {
@@ -63,7 +100,15 @@ class ProductController extends AbstractController
     	return view('product/edit', $data);
     }
 
-    public function update(Request $request, $id){
+    /**
+     * Update product
+     * @access public
+     * @param Request $request
+     * @param int $id
+     * @return
+     */
+    public function update(Request $request, int $id)
+    {
     	try {
     		$data['product'] = $this->service->getById($id);
     	} catch (ModelNotFoundException $e) {
@@ -74,7 +119,14 @@ class ProductController extends AbstractController
     	return redirect('/')->with('success', 'Produto atualizado com sucesso :)');
     }
 
-    public function delete($id){
+    /**
+     * Delete product
+     * @access public
+     * @param int $id
+     * @return
+     */
+    public function delete(int $id)
+    {
     	try {
     		$this->service->getById($id);
     	} catch (ModelNotFoundException $e) {
