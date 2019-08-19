@@ -25,6 +25,16 @@
                 </div>
                 <button type="submit" class="btn btn-primary">Salvar</button>
             </form>
+            <form method="POST" action='{{url("$product->COD_PRODUTO")}}' class="btn-delete">
+                @csrf
+                @method('delete')
+                <button type="submit" class="btn btn-danger">Excluir</button>
+            </form>
         </div>
     </div>
+    <style type="text/css">
+        form.btn-delete{
+            margin-top: 8px;
+        }
+    </style>
 @endsection

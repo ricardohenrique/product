@@ -38,7 +38,13 @@
                         <th scope="row">{{ $product->COD_PRODUTO }}</th>
                         <td>{{ $product->DESCRICAO }}</td>
                         <td>
-                            <a href='{{url("edit/$product->COD_PRODUTO")}}'>Editar</a>|<a href="">Excluir</a>
+                            <a class="btn btn-success btn-sm btn-block" href='{{url("$product->COD_PRODUTO")}}'>Ver</a>
+                            <a class="btn btn-primary btn-sm btn-block" href='{{url("edit/$product->COD_PRODUTO")}}'>Editar</a>
+                            <form method="POST" action='{{url("$product->COD_PRODUTO")}}'>
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger btn-sm btn-block">Excluir</button>
+                            </form>
                         </td>
                     </tr>
                     @endforeach
@@ -48,4 +54,9 @@
     </div>
     <script type="text/javascript">
     </script>
+    <style type="text/css">
+        form{
+            margin-top: 8px;
+        }
+    </style>
 @endsection
