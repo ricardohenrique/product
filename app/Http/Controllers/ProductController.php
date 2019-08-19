@@ -14,8 +14,7 @@ class ProductController extends AbstractController
     }
 
     public function index(){
-    	$data = $this->service->getAll();
-    	dd($data);
-    	return view('welcome');
+    	$data['products'] = $this->service->getAll();
+    	return view('product/index', $data);
     }
 }
