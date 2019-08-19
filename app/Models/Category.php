@@ -11,6 +11,7 @@ class Category extends Model implements ModelInterface
 
     protected $table = 'categoria';
     protected $dates = ['deleted_at'];
+    protected $primaryKey = 'COD_CATEGORIA';
     
     protected $fillable = [
         'COD_CATEGORIA',

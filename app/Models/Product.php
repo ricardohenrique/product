@@ -11,6 +11,7 @@ class Product extends Model implements ModelInterface
 
     protected $table = 'produto';
     protected $dates = ['deleted_at'];
+    protected $primaryKey = 'COD_PRODUTO';
     
     protected $fillable = [
         'COD_PRODUTO',
