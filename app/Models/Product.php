@@ -23,4 +23,12 @@ class Product extends Model implements ModelInterface
         'updated_at',
         'deleted_at'
     ];
+
+    /**
+     * Get the category
+     */
+    public function category()
+    {
+        return $this->hasOne('App\Models\Category', 'COD_CATEGORIA', 'COD_CATEGORIA');
+    }
 }
