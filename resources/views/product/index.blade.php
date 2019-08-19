@@ -1,47 +1,51 @@
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
-
-        <!-- Styles -->
-        <style>
-        </style>
-
-        <!-- Scripts -->
-        <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" defer></script>
-
-        <!-- Styles -->
-        <link href="{{ asset('bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height container">
-            <div class="content">
-                <div class="title m-b-md">
-                    <h1>Products</h1>
-                </div>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">DESCRIÇÃO</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($products as $product)
-                        <tr>
-                            <th scope="row">{{ $product->COD_PRODUTO }}</th>
-                            <td>{{ $product->DESCRICAO }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+@section('content')
+    <div class="flex-center position-ref full-height container">
+        <div class="content">
+            <div class="title m-b-md">
+                <h1>Produtos</h1>
+                <a href="{{url('create')}}" class="btn btn-primary">Novo Produto</a>
+                <br/><br/>
+                @if (session('success'))
+                    <div class="alert alert-success" role="alert">
+                        {{ session('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endif
             </div>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">DESCRIÇÃO</th>
+                        <th scope="col">AÇÃO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($products as $product)
+                    <tr>
+                        <th scope="row">{{ $product->COD_PRODUTO }}</th>
+                        <td>{{ $product->DESCRICAO }}</td>
+                        <td>
+                            <a href='{{url("edit/$product->COD_PRODUTO")}}'>Editar</a>|<a href="">Excluir</a>
+                        </td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
-    </body>
-</html>
+    </div>
+    <script type="text/javascript">
+    </script>
+@endsection
