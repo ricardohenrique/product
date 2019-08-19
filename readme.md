@@ -34,6 +34,11 @@ DB_USERNAME={YOUR_USERNAME}
 DB_PASSWORD={YOUR_PASSWORD}
 ```
 
+Crie a chave de aplicação:
+```sh
+$ php artisan key:generate
+```
+
 Execute as migrates e as seeds:
 ```sh
 $ php artisan migrate && php artisan db:seed
@@ -43,3 +48,10 @@ Execute os teste unitários de serviços :)
 ```sh
 $ vendor\bin\phpunit
 ```
+
+Execute :)
+```sh
+$ php artisan serve
+```
+
+Agora basta acessar: [http://127.0.0.1:8000](http://127.0.0.1:8000)
