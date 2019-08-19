@@ -6,7 +6,7 @@ Esse projeto requisita [PHP](http://www.php.net/) v7.1+ para ser executado.
 
 Clone o projeto:
 ```sh
-$ git clone https://gitlab.com/ricardo.mota/api-manager-product-by-spreadsheet.git
+$ git clone https://github.com/ricardohenrique/product.git
 ```
 
 Vá para a pasta:
@@ -39,7 +39,7 @@ Execute as migrates e as seeds:
 $ php artisan migrate && php artisan db:seed
 ```
 
-Execute os teste unitários de serviços :):
+Execute os teste unitários de serviços :)
 ```sh
 $ vendor\bin\phpunit
 ```
